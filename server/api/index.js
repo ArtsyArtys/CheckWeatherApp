@@ -1,9 +1,12 @@
 const router = require('express').Router()
 module.exports = router
 
-
-// example 'users' api route
-// router.use('/users', require('./users'))
+router.use(() => {
+  req.datacenter = "http://dataservice.accuweather.com/"
+  console.log(req.datacenter)
+})
+router.use('/location', require('./location'))
+router.use('/forecast', require('./forecast'))
 
 
 // 404 error handling
