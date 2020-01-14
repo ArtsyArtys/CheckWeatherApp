@@ -1,9 +1,10 @@
 const router = require('express').Router()
 module.exports = router
 
-router.use(() => {
+router.use((req, res, next) => {
   req.datacenter = "http://dataservice.accuweather.com/"
   console.log(req.datacenter)
+  next()
 })
 router.use('/location', require('./location'))
 router.use('/forecast', require('./forecast'))
