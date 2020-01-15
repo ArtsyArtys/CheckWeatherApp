@@ -4,9 +4,7 @@
 ## Installation
   Because this is not deployed on any dedicated servers right now, their is a requirement to create a file named ".env" in the "CheckWeatherApp" directory to use the Accuweather api key provided to the developer of this app. Without it, this app is non-functional. Until then, feel free to email me at Randy@ArtsyArtys.com and request it.
   In order to use this app, you must have node and npm installed on your computer as well as git. You can check if you have them by opening your bash/terminal (for linux/macOS users) or your command prompt (for Windows users) and typing in
-  ```node --version
-  npm --version
-  git --version```. If no version numbers show up you can install node and npm at once by checking the directions [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), and you can install git by checking the directions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+  ```node --version && npm --version && git --version```. If no version numbers show up you can install node and npm at once by checking the directions [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), and you can install git by checking the directions [here](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
   Once you have those installed, you can type in ```git clone https://github.com/ArtsyArtys/CheckWeatherApp.git``` into your terminal/command prompt. Change directories into the new CheckWeatherApp folder created by either using ```cd CheckWeatherApp``` for linux/macOS or ```dir CheckWeatherApp``` for Windows. run ```npm install```, and wait for the load to finish. Create the ".env" file in the "CheckWeatherApp", and input the line ```ACCUWEATHER_API_KEY=``` followed by the api key I've given you via email, then type ```npm start``` to get started. Open your browser of choice and type or copy "localhost:1234" or simply click [here](http://localhost:1234) to check it out!
 
 ## Troubleshooting
