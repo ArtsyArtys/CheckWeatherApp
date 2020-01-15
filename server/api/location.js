@@ -42,7 +42,6 @@ router.get('/city/:countryCode', async (req, res, next) => {
         q: req.query.input
       }
     })
-    console.log("data at idx 0", data[0])
     res.json(data[0].Key)
   } catch (err) {
     next(err)
@@ -64,8 +63,26 @@ router.get('/postalCode/:countryCode', async (req, res, next) => {
         }
       }
     )
-    console.log("data at idx 0", data[0])
     res.json(data[0].Key)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// by IP Address => should be checked first
+// frontend GET /api/location
+// fetch query GET /locations/v1/cities/ipaddress?apikey=process.env.ACCUWEATHER_API_KEY&q=127.0.0.1
+
+router.get('/', async (req, res, next) => {
+  try {
+    const {data} = await axios.get(`${req.datacenter}/locations/v1/cities/ipaddress`,
+    {
+      params: {
+        apikey: process.env.ACCUWEATHER_API_KEY,
+        q: req.ip
+      }
+    })
+    res.json(data.Key)
   } catch (err) {
     next(err)
   }
