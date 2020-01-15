@@ -36,13 +36,13 @@ router.get('/city/:countryCode', async (req, res, next) => {
   try {
     const {data} = await axios.get(
       `${req.datacenter}/locations/v1/cities/${req.params.countryCode}/search`,
-    {
-      params: {
-        apikey: process.env.ACCUWEATHER_API_KEY,
-        q: req.query.input
-      }
-    })
-    res.json(data[0].Key)
+      {
+        params: {
+          apikey: process.env.ACCUWEATHER_API_KEY,
+          q: req.query.input
+        }
+      })
+      res.json(data[0].Key)
   } catch (err) {
     next(err)
   }
@@ -75,6 +75,9 @@ router.get('/postalCode/:countryCode', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
+    if (req.ip === '::1') {
+      return res.status(403).send('Currently working on localhost, need to send public ip address to deployed server')
+    }
     const {data} = await axios.get(`${req.datacenter}/locations/v1/cities/ipaddress`,
     {
       params: {
