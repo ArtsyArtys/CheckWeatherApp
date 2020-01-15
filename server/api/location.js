@@ -76,13 +76,15 @@ router.get('/postalCode/:countryCode', async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   try {
     if (req.ip === '::1') {
-      return res.status(403).send('Currently working on localhost, need to send public ip address to deployed server')
+      req.ipAddress = process.env.MY_IP_ADDRESS  // your local ip address for running in dev mode
+      // return res.status(403).send('Currently working on localhost, need to send public ip address to deployed server')
     }
+    else { req.ipAddress = req.ip }
     const {data} = await axios.get(`${req.datacenter}/locations/v1/cities/ipaddress`,
     {
       params: {
         apikey: process.env.ACCUWEATHER_API_KEY,
-        q: req.ip
+        q: req.ipAddress
       }
     })
     res.json(data.Key)
