@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {CountryDropdown, RegionDropdown} from 'react-country-region-selector'
 
-const SelectCityForm = (props) => {
+const SelectCityForm = props => {
 
   const [countryFormState, setCountryFormState] = useState('US')
   const [regionFormState, setRegionFormState] = useState('IL') // TODO: base on IP address
@@ -29,12 +29,12 @@ const SelectCityForm = (props) => {
     }
     try {
       if ( /^\d+$/.test(cityFormState) ) {
-        const response = await axios.get(`/api/location/postalCode/${countryFormState}?input=${cityFormState}, ${regionFormState}`).data
+        const response = await axios.get(`/api/location/postalCode/${countryFormState}?input=${cityFormState}, ${regionFormState}`)
         const locationKey = response.data
         await useLocationKeyResponse(locationKey)
       }
       else {
-        const response = await axios.get(`/api/location/city/${countryFormState}?input=${cityFormState}, ${regionFormState}`).data
+        const response = await axios.get(`/api/location/city/${countryFormState}?input=${cityFormState}, ${regionFormState}`)
         const locationKey = response.data
         await useLocationKeyResponse(locationKey)
       }
@@ -50,8 +50,8 @@ const SelectCityForm = (props) => {
         Enter desired location:
       </h1>
 
-      <label className="label">Country</label>
       <div className="country-dropdown-container">
+        <label className="label">Country</label>
         <CountryDropdown
           value={countryFormState}
           valueType="short"

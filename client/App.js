@@ -3,12 +3,12 @@ import "@babel/polyfill" // Temporary, need to reconstruct Create Web Apps
 
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import {SelectCityForm} from './components'
+import {SelectCityForm, DisplayWeatherContainer} from './components'
 
 const App = () => {
 
   const [locationKey, setLocationKey] = useState('')
-  const [locationWeather, setLocationWeather] = useState({})
+  const [locationWeather, setLocationWeather] = useState([])
 
   useEffect(() => {
     const fetchIPLocationKey = async () => {
@@ -33,7 +33,12 @@ const App = () => {
 
   return (
     <div>
-      <SelectCityForm locationKey={locationKey} resetLocationKey={resetLocationKey} />
+      <SelectCityForm
+        locationKey={locationKey}
+        resetLocationKey={resetLocationKey}
+        resetLocationWeather={resetLocationWeather}
+      />
+      <DisplayWeatherContainer locationWeather={locationWeather} />
     </div>
   )
 }
