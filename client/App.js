@@ -1,4 +1,6 @@
-import "@babel/polyfill"
+import "@babel/polyfill" // Temporary, need to reconstruct Create Web Apps
+//babel transpilation for parcel projects for use with async/awaits
+
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {SelectCityForm} from './components'
