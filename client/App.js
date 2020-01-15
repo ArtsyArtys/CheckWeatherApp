@@ -1,10 +1,12 @@
-import React, {useEffect} from 'react'
+import "@babel/polyfill"
+import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import SelectCityForm from './components'
+import {SelectCityForm} from './components'
 
 const App = () => {
 
   const [locationKey, setLocationKey] = useState('')
+  const [locationWeather, setLocationWeather] = useState({})
 
   useEffect(() => {
     const fetchIPLocationKey = async () => {
@@ -17,10 +19,14 @@ const App = () => {
         console.error(err)
       }
     }
+    fetchIPLocationKey()
   }, [])
 
   const resetLocationKey = key => {
     setLocationKey(key)
+  }
+  const resetLocationWeather = weatherObj => {
+    setLocationWeather(weatherObj)
   }
 
   return (
