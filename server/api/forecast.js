@@ -11,6 +11,8 @@ module.exports = router
 router.get('/:locationKey', async (req, res, next) => {
   try {
     const cachedData = myCache.get(req.params.locationKey)
+    // TODO: Check using Redis or external database for more reliable caching
+    // and frontend localstorage to remove potential server-drop issues 
     if (cachedData) {
       console.log(cachedData);
       return res.json(cachedData)
